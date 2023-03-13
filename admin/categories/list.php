@@ -169,8 +169,16 @@ $categories = getAllCategories();
                     </div>
                 </div>
 
+                <!-- list start   -->
+
                 <div>
-                    <!-- list start   -->
+                    <?php if (isset($_GET['add']) && $_GET['add'] == "ok") {
+                        print '<div class="alert alert-success">
+                            Category was added successfully
+                            </div>';
+                    } ?>
+
+
                     <table class="table">
                         <thead>
                             <tr>
@@ -201,7 +209,7 @@ $categories = getAllCategories();
                             ?>
 
                         </tbody>
-                        </table>
+                    </table>
                 </div>
 
 
@@ -225,7 +233,8 @@ $categories = getAllCategories();
                             <input type="text" name="name" class="form-control" placeholder="name of the category ...">
                         </div>
                         <div class="form-group pt-3">
-                            <textarea name="description" class="form-control" placeholder="description of the category ..."></textarea>
+                            <textarea name="description" class="form-control"
+                                placeholder="description of the category ..."></textarea>
                         </div>
                 </div>
                 <div class="modal-footer">

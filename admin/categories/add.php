@@ -21,7 +21,7 @@ $result = $conn->query($query);
 
 if ($result) {
     # code...
-    header('location:list.php');
+    header('location:list.php?add=ok');
 }
 
 ?>
