@@ -172,12 +172,13 @@ $categories = getAllCategories();
                 <!-- list start   -->
 
                 <div>
-                    <?php if (isset($_GET['add']) && $_GET['add'] == "ok") {
+                    <?php 
+                    if (isset($_GET['add']) && $_GET['add'] == "ok") {
                         print '<div class="alert alert-success">
                             Category was added successfully
                             </div>';
-                    } ?>
-
+                    } 
+                    ?>
 
                     <table class="table">
                         <thead>
@@ -201,7 +202,7 @@ $categories = getAllCategories();
                                 <td>' . $category['description'] . '</td>
                                 <td>
                                     <a href="http://" class="btn btn-success">Edit</a>
-                                    <a href="http://" class="btn btn-danger">Delete</a>
+                                    <a href="delete.php" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>';
                             }
