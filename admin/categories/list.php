@@ -172,12 +172,20 @@ $categories = getAllCategories();
                 <!-- list start   -->
 
                 <div>
-                    <?php 
+                    <?php
                     if (isset($_GET['add']) && $_GET['add'] == "ok") {
                         print '<div class="alert alert-success">
                             Category was added successfully
                             </div>';
-                    } 
+                    }
+                    ?>
+
+                    <?php
+                    if (isset($_GET['delete']) && $_GET['delete'] == "ok") {
+                        print '<div class="alert alert-success">
+                            Category was deleted successfully
+                            </div>';
+                    }
                     ?>
 
                     <table class="table">
@@ -202,7 +210,7 @@ $categories = getAllCategories();
                                 <td>' . $category['description'] . '</td>
                                 <td>
                                     <a href="http://" class="btn btn-success">Edit</a>
-                                    <a href="delete.php" class="btn btn-danger">Delete</a>
+                                    <a href="delete.php?idc=' . $category['id'] . '" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>';
                             }
