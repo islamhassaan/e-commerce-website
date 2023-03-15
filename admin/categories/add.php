@@ -12,16 +12,28 @@ $date_creation = date("Y-m-d");
 include "../../include/functions.php";
 $conn = connect();
 
-// 3 - create the query
-$query = "INSERT INTO categories(name,description,creator,date_creation)
+
+// i added try catch here to prevent the admin from duplicate category name 
+try {
+
+    // 3 - create the query
+    $query = "INSERT INTO categories(name,description,creator,date_creation)
     VALUES ('$name', '$description', '$creator', '$date_creation')";
 
-// 4 - execution the query
-$result = $conn->query($query);
+    // 4 - execution the query
+    $result = $conn->query($query);
 
-if ($result) {
-    # code...
-    header('location:list.php?add=ok');
+    if ($result) {
+        # code...
+        header('location:list.php?add=ok');
+    }
+
+} catch (PDOException $e) {
+    if ($e->getCode() == 23000) {
+        # code...
+        header('location:list.php?error=duplicate');
+    }
 }
+
 
 ?>

@@ -194,6 +194,13 @@ $categories = getAllCategories();
                             </div>';
                     }
                     ?>
+                    <?php
+                    if (isset($_GET['error']) && $_GET['error'] == "duplicate") {
+                        print '<div class="alert alert-success">
+                            Category name is already exist.
+                            </div>';
+                    }
+                    ?>
 
                     <table class="table">
                         <thead>
@@ -246,10 +253,10 @@ $categories = getAllCategories();
                 <div class="modal-body">
                     <form action="add.php" method="POST">
                         <div class="form-group">
-                            <input type="text" name="name" class="form-control" placeholder="name of the category ...">
+                            <input type="text" name="name" required class="form-control" placeholder="name of the category ...">
                         </div>
                         <div class="form-group pt-3">
-                            <textarea name="description" class="form-control"
+                            <textarea name="description" required class="form-control"
                                 placeholder="description of the category ..."></textarea>
                         </div>
                 </div>
