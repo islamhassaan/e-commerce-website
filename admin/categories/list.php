@@ -201,16 +201,16 @@ $categories = getAllCategories();
 
                             <?php
                             $i = 0;
-                            foreach ($categories as $category) {
+                            foreach ($categories as $c) {
                                 # code...
                                 $i++;
                                 print '<tr>
                                 <th scope="row">' . $i . '</th>
-                                <td>' . $category['name'] . '</td>
-                                <td>' . $category['description'] . '</td>
+                                <td>' . $c['name'] . '</td>
+                                <td>' . $c['description'] . '</td>
                                 <td>
-                                    <a href="http://" class="btn btn-success">Edit</a>
-                                    <a href="delete.php?idc=' . $category['id'] . '" class="btn btn-danger">Delete</a>
+                                    <a data-bs-toggle="modal" data-bs-target="#editModal"'.$c['id'].'"" class="btn btn-success">Edit</a>
+                                    <a href="delete.php?idc=' . $c['id'] . '" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>';
                             }
@@ -254,31 +254,39 @@ $categories = getAllCategories();
         </div>
     </div>
 
+
+    <?php
+    foreach($categories as $index => $category) { ?>
+
         <!-- Modal Edit -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add Category</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal fade" id="editModal<?php $category['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Category</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="edit.php" method="POST">
+                            <div class="form-group">
+                                <input type="text" name="name" class="form-control" value="<?php echo $category['name']; ?>" placeholder="name of the category ...">
+                            </div>
+                            <div class="form-group pt-3">
+                                <textarea name="description" class="form-control"
+                                    placeholder="description of the category ..."> <?php echo $category['description']; ?> </textarea>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                    </div>
+                    </form>
                 </div>
-                <div class="modal-body">
-                    <form action="add.php" method="POST">
-                        <div class="form-group">
-                            <input type="text" name="name" class="form-control" placeholder="name of the category ...">
-                        </div>
-                        <div class="form-group pt-3">
-                            <textarea name="description" class="form-control"
-                                placeholder="description of the category ..."></textarea>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Add</button>
-                </div>
-                </form>
             </div>
         </div>
-    </div>
+
+    <?php
+    }
+    ?>
 
 
     <script src="../../js/bootstrap.bundle.min.js"
