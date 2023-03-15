@@ -228,8 +228,34 @@ $categories = getAllCategories();
 
 
 
-    <!-- Modal -->
+    <!-- Modal Add -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add Category</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="add.php" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control" placeholder="name of the category ...">
+                        </div>
+                        <div class="form-group pt-3">
+                            <textarea name="description" class="form-control"
+                                placeholder="description of the category ..."></textarea>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+        <!-- Modal Edit -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
