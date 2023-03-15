@@ -187,6 +187,13 @@ $categories = getAllCategories();
                             </div>';
                     }
                     ?>
+                    <?php
+                    if (isset($_GET['edit']) && $_GET['edit'] == "ok") {
+                        print '<div class="alert alert-success">
+                            Category was updated successfully
+                            </div>';
+                    }
+                    ?>
 
                     <table class="table">
                         <thead>
@@ -209,7 +216,7 @@ $categories = getAllCategories();
                                 <td>' . $c['name'] . '</td>
                                 <td>' . $c['description'] . '</td>
                                 <td>
-                                    <a data-bs-toggle="modal" data-bs-target="#editModal"'.$c['id'].'"" class="btn btn-success">Edit</a>
+                                    <a data-bs-toggle="modal" data-bs-target="#editModal'.$c['id'].'" class="btn btn-success">Edit</a>
                                     <a href="delete.php?idc=' . $c['id'] . '" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>';
@@ -259,7 +266,7 @@ $categories = getAllCategories();
     foreach($categories as $index => $category) { ?>
 
         <!-- Modal Edit -->
-        <div class="modal fade" id="editModal<?php $category['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="editModal<?php echo $category['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -268,6 +275,7 @@ $categories = getAllCategories();
                     </div>
                     <div class="modal-body">
                         <form action="edit.php" method="POST">
+                            <input type="hidden" name="idc" value="<?php echo $category['id']; ?>">
                             <div class="form-group">
                                 <input type="text" name="name" class="form-control" value="<?php echo $category['name']; ?>" placeholder="name of the category ...">
                             </div>
